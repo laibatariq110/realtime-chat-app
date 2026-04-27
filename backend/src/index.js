@@ -40,3 +40,4 @@ server.listen(PORT, () => {
   console.log("server is running on port PORT: " + PORT);
   connectDB();
 });
+console.log("MONGO:", process.env.MONGODB_URI);
