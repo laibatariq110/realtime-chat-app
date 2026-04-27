@@ -36,7 +36,7 @@ export const useChatStore = create((set, get) => ({
   sendMessage: async (messageData) => {
     const { messages, selectedUser, isSendingMessage } = get();
     if (isSendingMessage) return;
-
+    
     set({ isSendingMessage: true });
     try {
       const res = await axiosInstance.post(
@@ -56,18 +56,9 @@ export const useChatStore = create((set, get) => ({
 
     const socket = useAuthStore.getState().socket;
 
-    socket.off("newMessage");
-
     socket.on("newMessage", (newMessage) => {
-      const { authUser } = useAuthStore.getState();
-
-      const isMessageForThisChat =
-        (newMessage.senderId === selectedUser._id &&
-          newMessage.receiverId === authUser._id) ||
-        (newMessage.senderId === authUser._id &&
-          newMessage.receiverId === selectedUser._id);
-
-      if (!isMessageForThisChat) return;
+      const isMessageSentFromSelectedUser = newMessage.senderId === selectedUser._id;
+      if (!isMessageSentFromSelectedUser) return;
 
       set({ messages: [...get().messages, newMessage] });
     });
@@ -75,7 +66,7 @@ export const useChatStore = create((set, get) => ({
   unsubscribeFromMessages: () => {
     const socket = useAuthStore.getState().socket;
     socket.off("newMessage");
-  },
-
+  }, 
+  
   setSelectedUser: (selectedUser) => set({ selectedUser }),
 }));
