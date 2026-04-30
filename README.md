@@ -41,7 +41,7 @@ A full-stack realtime chat application built with the MERN stack and Socket.io, 
 ![Signup](./screenshots/signup.png)
 
 ### 🏠 Homepage
-![Homepage](./screenshots/home.png)
+![Homepage](./screenshots/home-page.png)
 
 ### 💬 Chat Interface
 ![Chat](./screenshots/chat.png)
