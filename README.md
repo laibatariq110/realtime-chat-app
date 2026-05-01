@@ -96,6 +96,6 @@ Make sure to configure environment variables in your hosting platform.
 
 ## 🧠 Challenges & Fixes
 
-- Fixed messaging and socket issues caused by incorrect `_id` reference in user authentication flow
+- - Fixed realtime messaging issues and resolved API response inconsistencies (missing `_id` and `createdAt`) affecting chat and profile features.
 
 ---
